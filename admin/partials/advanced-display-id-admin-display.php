@@ -23,9 +23,7 @@ if ( ! defined( 'WPINC' ) ) die;
     <?php
         //Grab all options
         $options = get_option($this->plugin_name);
-        $example_select = ( isset( $options['example_checkbox'] ) && ! empty( $options['example_checkbox'] ) ) ? esc_attr( $options['example_checkbox'] ) : '1';
-        $example_text = ( isset( $options['example_text'] ) && ! empty( $options['example_text'] ) ) ? esc_attr( $options['example_text'] ) : 'default';
-        $example_radio = ( isset( $options['example_radio'] ) && ! empty( $options['example_radio'] ) ) ? 1 : 0;
+        $general_radio = ( isset( $options['general_radio'] ) && ! empty( $options['general_radio'] ) ) ?: $options['general_radio'];
         settings_fields($this->plugin_name);
         do_settings_sections($this->plugin_name);
         // Sources: - http://searchengineland.com/tested-googlebot-crawls-javascript-heres-learned-220157
@@ -56,18 +54,22 @@ if ( ! defined( 'WPINC' ) ) die;
         <input type="text" class="example_text" id="<?php //echo $this->plugin_name; ?>-example_text" name="<?php //echo $this->plugin_name; ?>[example_text]" value="<?php //if( ! empty( $example_text ) ) echo $example_text; else echo 'default'; ?>"/>
     </fieldset> -->
 
+   
     <!-- Radio Button -->
     <fieldset>
-        <h2><?php _e( 'Overall Setting', $this->plugin_name ); ?></h2>
+        <!-- run the settings_errors() function here. -->
+        <?php settings_errors(); ?>
+
+        <h2><?php _e( 'General Setting', $this->plugin_name ); ?></h2>
         <!-- <legend class="example-radio">
             <span><?php //_e( 'Post ID management', $this->plugin_name ); ?></span>
         </legend> -->
-        <label for="<?php echo $this->plugin_name; ?>-overall_radio_show">
-            <input type="radio" id="<?php echo $this->plugin_name; ?>-overall_radio_show" name="<?php echo $this->plugin_name; ?>[example_radio]" value="1" <?php checked( $example_radio, 1 ); ?> />
+        <label for="<?php echo $this->plugin_name; ?>-general_radio_show">
+            <input type="radio" id="<?php echo $this->plugin_name; ?>-general_radio_show" name="<?php echo $this->plugin_name; ?>[general_radio]" value="1" <?php checked( $options['general_radio'], 1 ); ?> />
             <span><?php esc_attr_e('Show', $this->plugin_name); ?></span>
         </label>
-        <label for="<?php echo $this->plugin_name; ?>-overall_radio_hide">
-            <input type="radio" id="<?php echo $this->plugin_name; ?>-overall_radio_hide" name="<?php echo $this->plugin_name; ?>[example_radio]" value="2" <?php checked( $example_radio, 1 ); ?> />
+        <label for="<?php echo $this->plugin_name; ?>-general_radio_hide">
+            <input type="radio" id="<?php echo $this->plugin_name; ?>-general_radio_hide" name="<?php echo $this->plugin_name; ?>[general_radio]" value="0" <?php checked( $options['general_radio'], 0 ); ?> />
             <span><?php esc_attr_e('Hide', $this->plugin_name); ?></span>
         </label>
     </fieldset>

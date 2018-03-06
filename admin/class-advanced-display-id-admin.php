@@ -52,8 +52,8 @@ class Advanced_Display_Id_Admin {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 
-		add_action( 'admin_init', array( $this, 'custom_objects' ) );
-		
+		if ( get_option($plugin_name)['general_radio'] == 1) {
+
 		// For Post Management
 		add_filter( 'manage_posts_columns', array( $this, 'add_column' ) );
 		add_action( 'manage_posts_custom_column', array( $this, 'add_value' ), 10, 2 );
@@ -75,6 +75,34 @@ class Advanced_Display_Id_Admin {
 		// For Comment Management
 		add_action( 'manage_edit-comments_columns', array( $this, 'add_column' ) );
 		add_action( 'manage_comments_custom_column', array( $this, 'add_value' ), 10, 2 );
+		// For CPT Management
+		add_action( 'admin_init', array( $this, 'custom_objects' ) );
+		
+		}else {
+		// For Post Management
+		remove_filter( 'manage_posts_columns', array( $this, 'add_column' ) );
+		remove_action( 'manage_posts_custom_column', array( $this, 'add_value' ), 10, 2 );
+		// For Page Management
+		remove_filter( 'manage_pages_columns', array( $this, 'add_column' ) );
+		remove_action( 'manage_pages_custom_column', array( $this, 'add_value' ), 10, 2 );
+		// For Media Management
+		remove_filter( 'manage_media_columns', array( $this, 'add_column' ) );
+		remove_action( 'manage_media_custom_column', array( $this, 'add_value' ), 10, 2 );
+		// For Link Management
+		remove_filter( 'manage_link-manager_columns', array( $this, 'add_column' ) );
+		remove_action( 'manage_link_custom_column', array( $this, 'add_value' ), 10, 2 );
+		// For Category Management
+		remove_action( 'manage_edit-link-categories_columns', array( $this, 'add_column' ) );
+		remove_filter( 'manage_link_categories_custom_column', array( $this, 'add_return_value' ), 10, 3 );
+		// For User Management
+		remove_action( 'manage_users_columns', array( $this, 'add_column' ) );
+		remove_filter( 'manage_users_custom_column', array( $this, 'add_return_value' ), 10, 3 );
+		// For Comment Management
+		remove_action( 'manage_edit-comments_columns', array( $this, 'add_column' ) );
+		remove_action( 'manage_comments_custom_column', array( $this, 'add_value' ), 10, 2 );
+		// For CPT Management
+		remove_action( 'admin_init', array( $this, 'custom_objects' ) );
+	}
 
 	}
 
@@ -175,9 +203,8 @@ class Advanced_Display_Id_Admin {
 	 */
 	public function validate($input) {
 		$valid = array();
-		$valid['example_checkbox'] = ( isset( $input['example_checkbox'] ) && ! empty( $input['example_checkbox'] ) ) ? 1 : 0;
-		$valid['example_text'] = ( isset( $input['example_text'] ) && ! empty( $input['example_text'] ) ) ? esc_attr( $input['example_text'] ) : 'default';
-		$valid['example_select'] = ( isset($input['example_select'] ) && ! empty( $input['example_select'] ) ) ? esc_attr($input['example_select']) : 1;
+		// Elvis operator ?:
+		$valid['general_radio'] = ( isset($input['general_radio'] ) && ! empty( $input['general_radio'] ) ) ?: esc_attr($input['general_radio']);
 		return $valid;
 	}
 	public function options_update() {
@@ -185,7 +212,7 @@ class Advanced_Display_Id_Admin {
 	}
 
 	/**
-	 * Hooks to the 'admin_init'
+	 * Hooks to the 'admin_init' for CPT and Taxnomoies
 	 *
 	 * @return void
 	 */
