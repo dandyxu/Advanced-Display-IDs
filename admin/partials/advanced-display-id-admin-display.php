@@ -24,6 +24,8 @@ if ( ! defined( 'WPINC' ) ) die;
         //Grab all options
         $options = get_option($this->plugin_name);
         $general_radio = ( isset( $options['general_radio'] ) && ! empty( $options['general_radio'] ) ) ?: $options['general_radio'];
+        $post_radio = ( isset( $options['post_radio'] ) && ! empty( $options['post_radio'] ) ) ?: $options['post_radio'];
+    
         settings_fields($this->plugin_name);
         do_settings_sections($this->plugin_name);
         // Sources: - http://searchengineland.com/tested-googlebot-crawls-javascript-heres-learned-220157
@@ -55,21 +57,31 @@ if ( ! defined( 'WPINC' ) ) die;
     </fieldset> -->
 
    
-    <!-- Radio Button -->
+    <!-- General Control -->
     <fieldset>
         <!-- run the settings_errors() function here. -->
         <?php settings_errors(); ?>
 
         <h2><?php _e( 'General Setting', $this->plugin_name ); ?></h2>
-        <!-- <legend class="example-radio">
-            <span><?php //_e( 'Post ID management', $this->plugin_name ); ?></span>
-        </legend> -->
         <label for="<?php echo $this->plugin_name; ?>-general_radio_show">
             <input type="radio" id="<?php echo $this->plugin_name; ?>-general_radio_show" name="<?php echo $this->plugin_name; ?>[general_radio]" value="1" <?php checked( $options['general_radio'], 1 ); ?> />
             <span><?php esc_attr_e('Show', $this->plugin_name); ?></span>
         </label>
         <label for="<?php echo $this->plugin_name; ?>-general_radio_hide">
             <input type="radio" id="<?php echo $this->plugin_name; ?>-general_radio_hide" name="<?php echo $this->plugin_name; ?>[general_radio]" value="0" <?php checked( $options['general_radio'], 0 ); ?> />
+            <span><?php esc_attr_e('Hide', $this->plugin_name); ?></span>
+        </label>
+    </fieldset>
+
+    <!-- Post Control -->
+    <fieldset>
+        <h2><?php _e( 'Post ID Management', $this->plugin_name ); ?></h2>
+        <label for="<?php echo $this->plugin_name; ?>-post_radio_show">
+            <input type="radio" id="<?php echo $this->plugin_name; ?>-post_radio_show" name="<?php echo $this->plugin_name; ?>[post_radio]" value="1" <?php checked( $options['post_radio'], 1 ); ?> />
+            <span><?php esc_attr_e('Show', $this->plugin_name); ?></span>
+        </label>
+        <label for="<?php echo $this->plugin_name; ?>-post_radio_hide">
+            <input type="radio" id="<?php echo $this->plugin_name; ?>-post_radio_hide" name="<?php echo $this->plugin_name; ?>[post_radio]" value="0" <?php checked( $options['post_radio'], 0 ); ?> />
             <span><?php esc_attr_e('Hide', $this->plugin_name); ?></span>
         </label>
     </fieldset>

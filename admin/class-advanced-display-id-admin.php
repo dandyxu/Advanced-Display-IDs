@@ -78,7 +78,7 @@ class Advanced_Display_Id_Admin {
 		// For CPT Management
 		add_action( 'admin_init', array( $this, 'custom_objects' ) );
 		
-		}else {
+		} else if ( get_option($plugin_name)['general_radio'] == 0) {
 		// For Post Management
 		remove_filter( 'manage_posts_columns', array( $this, 'add_column' ) );
 		remove_action( 'manage_posts_custom_column', array( $this, 'add_value' ), 10, 2 );
@@ -102,6 +102,14 @@ class Advanced_Display_Id_Admin {
 		remove_action( 'manage_comments_custom_column', array( $this, 'add_value' ), 10, 2 );
 		// For CPT Management
 		remove_action( 'admin_init', array( $this, 'custom_objects' ) );
+	}else if ( get_option($plugin_name)['post_radio'] == 1) {
+		// For Post Management
+		add_filter( 'manage_posts_columns', array( $this, 'add_column' ) );
+		add_action( 'manage_posts_custom_column', array( $this, 'add_value' ), 10, 2 );
+	}else {
+		// For Post Management
+		remove_filter( 'manage_posts_columns', array( $this, 'add_column' ) );
+		remove_action( 'manage_posts_custom_column', array( $this, 'add_value' ), 10, 2 );
 	}
 
 	}
@@ -205,6 +213,8 @@ class Advanced_Display_Id_Admin {
 		$valid = array();
 		// Elvis operator ?:
 		$valid['general_radio'] = ( isset($input['general_radio'] ) && ! empty( $input['general_radio'] ) ) ?: esc_attr($input['general_radio']);
+		$valid['post_radio'] = ( isset($input['post_radio'] ) && ! empty( $input['post_radio'] ) ) ?: esc_attr($input['post_radio']);
+		
 		return $valid;
 	}
 	public function options_update() {
