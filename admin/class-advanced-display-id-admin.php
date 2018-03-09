@@ -434,14 +434,14 @@ class Advanced_Display_Id_Admin {
 		$valid = array();
 		// Elvis operator ?:
 		$valid['general_radio'] = ( isset($input['general_radio'] ) && ! empty( $input['general_radio'] ) ) ?: esc_attr($input['general_radio']);
-		$valid['post_radio'] = ( isset($input['post_radio'] ) && ! empty( $input['post_radio'] ) ) ? esc_attr($input['post_radio']) : 0;
-		$valid['page_radio'] = ( isset($input['page_radio'] ) && ! empty( $input['page_radio'] ) ) ? esc_attr($input['page_radio']) : 0;
-		$valid['media_radio'] = ( isset($input['media_radio'] ) && ! empty( $input['media_radio'] ) ) ? esc_attr($input['media_radio']) : 0;
-		$valid['link_radio'] = ( isset($input['link_radio'] ) && ! empty( $input['link_radio'] ) ) ? esc_attr($input['link_radio']) : 0;
-		$valid['category_radio'] = ( isset($input['category_radio'] ) && ! empty( $input['category_radio'] ) ) ? esc_attr($input['category_radio']) : 0;
-		$valid['user_radio'] = ( isset($input['user_radio'] ) && ! empty( $input['user_radio'] ) ) ? esc_attr($input['user_radio']) : 0;
-		$valid['comment_radio'] = ( isset($input['comment_radio'] ) && ! empty( $input['comment_radio'] ) ) ? esc_attr($input['comment_radio']) : 0;
-		$valid['cpt_radio'] = ( isset($input['cpt_radio'] ) && ! empty( $input['cpt_radio'] ) ) ? esc_attr($input['cpt_radio']) : 0;
+		$valid['post_radio'] = ( isset($input['post_radio'] ) && ! empty( $input['post_radio'] ) ) ?: esc_attr($input['post_radio']);
+		$valid['page_radio'] = ( isset($input['page_radio'] ) && ! empty( $input['page_radio'] ) ) ?: esc_attr($input['page_radio']);
+		$valid['media_radio'] = ( isset($input['media_radio'] ) && ! empty( $input['media_radio'] ) ) ?: esc_attr($input['media_radio']);
+		$valid['link_radio'] = ( isset($input['link_radio'] ) && ! empty( $input['link_radio'] ) ) ?: esc_attr($input['link_radio']);
+		$valid['category_radio'] = ( isset($input['category_radio'] ) && ! empty( $input['category_radio'] ) ) ?: esc_attr($input['category_radio']);
+		$valid['user_radio'] = ( isset($input['user_radio'] ) && ! empty( $input['user_radio'] ) ) ?: esc_attr($input['user_radio']);
+		$valid['comment_radio'] = ( isset($input['comment_radio'] ) && ! empty( $input['comment_radio'] ) ) ?: esc_attr($input['comment_radio']);
+		$valid['cpt_radio'] = ( isset($input['cpt_radio'] ) && ! empty( $input['cpt_radio'] ) ) ?: esc_attr($input['cpt_radio']);
 		return $valid;
 	}
 	public function options_update() {

@@ -23,17 +23,19 @@ if ( ! defined( 'WPINC' ) ) die;
     <?php
         //Grab all options
         $options = get_option($this->plugin_name);
-        $general_radio = ( isset( $options['general_radio'] ) && ! empty( $options['general_radio'] ) ) ?: isset($options['general_radio']);
-        $post_radio = ( isset( $options['post_radio'] ) && ! empty( $options['post_radio'] ) ) ?: isset($options['post_radio']);
-        $page_radio = ( isset( $options['page_radio'] ) && ! empty( $options['page_radio'] ) ) ?: isset($options['page_radio']);
-        $media_radio = ( isset( $options['media_radio'] ) && ! empty( $options['media_radio'] ) ) ?: isset($options['media_radio']);
-        $link_radio = ( isset( $options['link_radio'] ) && ! empty( $options['link_radio'] ) ) ?: isset($options['link_radio']);
-        $category_radio = ( isset( $options['category_radio'] ) && ! empty( $options['category_radio'] ) ) ?: isset($options['category_radio']);
-        $user_radio = ( isset( $options['user_radio'] ) && ! empty( $options['user_radio'] ) ) ?: isset($options['user_radio']);
-        $comment_radio = ( isset( $options['comment_radio'] ) && ! empty( $options['comment_radio'] ) ) ?: isset($options['comment_radio']);
-        $cpt_radio = ( isset( $options['cpt_radio'] ) && ! empty( $options['cpt_radio'] ) ) ?: isset($options['cpt_radio']); 
+        $general_radio = ( isset( $options['general_radio'] ) && ! empty( $options['general_radio'] ) ) ? $options['general_radio'] : 1;
+        $post_radio = ( isset( $options['post_radio'] ) && ! empty( $options['post_radio'] ) ) ?: $options['post_radio'];
+        $page_radio = ( isset( $options['page_radio'] ) && ! empty( $options['page_radio'] ) ) ?: $options['page_radio'];
+        $media_radio = ( isset( $options['media_radio'] ) && ! empty( $options['media_radio'] ) ) ?: $options['media_radio'];
+        $link_radio = ( isset( $options['link_radio'] ) && ! empty( $options['link_radio'] ) ) ?: $options['link_radio'];
+        $category_radio = ( isset( $options['category_radio'] ) && ! empty( $options['category_radio'] ) ) ?: $options['category_radio'];
+        $user_radio = ( isset( $options['user_radio'] ) && ! empty( $options['user_radio'] ) ) ?: $options['user_radio'];
+        $comment_radio = ( isset( $options['comment_radio'] ) && ! empty( $options['comment_radio'] ) ) ?: $options['comment_radio'];
+        $cpt_radio = ( isset( $options['cpt_radio'] ) && ! empty( $options['cpt_radio'] ) ) ?: $options['cpt_radio']; 
         settings_fields($this->plugin_name);
         do_settings_sections($this->plugin_name);
+
+        var_dump($options);
         // Sources: - http://searchengineland.com/tested-googlebot-crawls-javascript-heres-learned-220157
         //          - http://dinbror.dk/blog/lazy-load-images-seo-problem/
         //          - https://webmasters.googleblog.com/2015/10/deprecating-our-ajax-crawling-scheme.html
