@@ -25,7 +25,13 @@ if ( ! defined( 'WPINC' ) ) die;
         $options = get_option($this->plugin_name);
         $general_radio = ( isset( $options['general_radio'] ) && ! empty( $options['general_radio'] ) ) ?: $options['general_radio'];
         $post_radio = ( isset( $options['post_radio'] ) && ! empty( $options['post_radio'] ) ) ?: $options['post_radio'];
-    
+        $page_radio = ( isset( $options['page_radio'] ) && ! empty( $options['page_radio'] ) ) ?: $options['page_radio'];
+        $media_radio = ( isset( $options['media_radio'] ) && ! empty( $options['media_radio'] ) ) ?: $options['media_radio'];
+        $link_radio = ( isset( $options['link_radio'] ) && ! empty( $options['link_radio'] ) ) ?: $options['link_radio'];
+        $category_radio = ( isset( $options['category_radio'] ) && ! empty( $options['category_radio'] ) ) ?: $options['category_radio'];
+        $user_radio = ( isset( $options['user_radio'] ) && ! empty( $options['user_radio'] ) ) ?: $options['user_radio'];
+        $comment_radio = ( isset( $options['comment_radio'] ) && ! empty( $options['comment_radio'] ) ) ?: $options['comment_radio'];
+        $cpt_radio = ( isset( $options['cpt_radio'] ) && ! empty( $options['cpt_radio'] ) ) ?: $options['cpt_radio']; 
         settings_fields($this->plugin_name);
         do_settings_sections($this->plugin_name);
         // Sources: - http://searchengineland.com/tested-googlebot-crawls-javascript-heres-learned-220157
@@ -63,12 +69,13 @@ if ( ! defined( 'WPINC' ) ) die;
         <?php settings_errors(); ?>
 
         <h2><?php _e( 'General Setting', $this->plugin_name ); ?></h2>
+        <?php echo $general_radio; ?>
         <label for="<?php echo $this->plugin_name; ?>-general_radio_show">
-            <input type="radio" id="<?php echo $this->plugin_name; ?>-general_radio_show" name="<?php echo $this->plugin_name; ?>[general_radio]" value="1" <?php checked( $options['general_radio'], 1 ); ?> />
+            <input type="radio" id="<?php echo $this->plugin_name; ?>-general_radio_show" name="<?php echo $this->plugin_name; ?>[general_radio]" value="1" <?php checked( $general_radio, 1 ); ?> />
             <span><?php esc_attr_e('Show', $this->plugin_name); ?></span>
         </label>
         <label for="<?php echo $this->plugin_name; ?>-general_radio_hide">
-            <input type="radio" id="<?php echo $this->plugin_name; ?>-general_radio_hide" name="<?php echo $this->plugin_name; ?>[general_radio]" value="0" <?php checked( $options['general_radio'], 0 ); ?> />
+            <input type="radio" id="<?php echo $this->plugin_name; ?>-general_radio_hide" name="<?php echo $this->plugin_name; ?>[general_radio]" value="0" <?php checked( $general_radio, 0 ); ?> />
             <span><?php esc_attr_e('Hide', $this->plugin_name); ?></span>
         </label>
     </fieldset>
@@ -76,14 +83,113 @@ if ( ! defined( 'WPINC' ) ) die;
     <!-- Post Control -->
     <fieldset>
         <h2><?php _e( 'Post ID Management', $this->plugin_name ); ?></h2>
+        <?php echo $post_radio; ?>
         <label for="<?php echo $this->plugin_name; ?>-post_radio_show">
-            <input type="radio" id="<?php echo $this->plugin_name; ?>-post_radio_show" name="<?php echo $this->plugin_name; ?>[post_radio]" value="1" <?php checked( $options['post_radio'], 1 ); ?> />
+            <input type="radio" id="<?php echo $this->plugin_name; ?>-post_radio_show" name="<?php echo $this->plugin_name; ?>[post_radio]" value="1" <?php checked( $post_radio, 1 ); ?> />
             <span><?php esc_attr_e('Show', $this->plugin_name); ?></span>
         </label>
         <label for="<?php echo $this->plugin_name; ?>-post_radio_hide">
-            <input type="radio" id="<?php echo $this->plugin_name; ?>-post_radio_hide" name="<?php echo $this->plugin_name; ?>[post_radio]" value="0" <?php checked( $options['post_radio'], 0 ); ?> />
+            <input type="radio" id="<?php echo $this->plugin_name; ?>-post_radio_hide" name="<?php echo $this->plugin_name; ?>[post_radio]" value="0" <?php checked( $post_radio, 0 ); ?> />
             <span><?php esc_attr_e('Hide', $this->plugin_name); ?></span>
         </label>
+    </fieldset>
+
+     <!-- Page Control -->
+     <fieldset>
+        <h2><?php _e( 'Page ID Management', $this->plugin_name ); ?></h2>
+        <?php echo $page_radio; ?>
+        <label for="<?php echo $this->plugin_name; ?>-page_radio_show">
+            <input type="radio" id="<?php echo $this->plugin_name; ?>-page_radio_show" name="<?php echo $this->plugin_name; ?>[page_radio]" value="1" <?php checked( $page_radio, 1 ); ?> />
+            <span><?php esc_attr_e('Show', $this->plugin_name); ?></span>
+        </label>
+        <label for="<?php echo $this->plugin_name; ?>-page_radio_hide">
+            <input type="radio" id="<?php echo $this->plugin_name; ?>-page_radio_hide" name="<?php echo $this->plugin_name; ?>[page_radio]" value="0" <?php checked( $page_radio, 0 ); ?> />
+            <span><?php esc_attr_e('Hide', $this->plugin_name); ?></span>
+        </label>
+    </fieldset>
+
+    <!-- Media Control -->
+    <fieldset>
+            <h2><?php _e( 'Media ID Management', $this->plugin_name ); ?></h2>
+            <?php echo get_option($this->plugin_name)['media_radio']; ?>
+            <label for="<?php echo $this->plugin_name; ?>-media_radio_show">
+                <input type="radio" id="<?php echo $this->plugin_name; ?>-media_radio_show" name="<?php echo $this->plugin_name; ?>[media_radio]" value="1" <?php checked( $media_radio, 1 ); ?> />
+                <span><?php esc_attr_e('Show', $this->plugin_name); ?></span>
+            </label>
+            <label for="<?php echo $this->plugin_name; ?>-media_radio_hide">
+                <input type="radio" id="<?php echo $this->plugin_name; ?>-media_radio_hide" name="<?php echo $this->plugin_name; ?>[media_radio]" value="0" <?php checked( $media_radio, 0 ); ?> />
+                <span><?php esc_attr_e('Hide', $this->plugin_name); ?></span>
+            </label>
+    </fieldset>
+
+     <!-- Link Control -->
+     <fieldset>
+            <h2><?php _e( 'Link ID Management', $this->plugin_name ); ?></h2>
+            <?php echo $link_radio; ?>
+            <label for="<?php echo $this->plugin_name; ?>-link_radio_show">
+                <input type="radio" id="<?php echo $this->plugin_name; ?>-link_radio_show" name="<?php echo $this->plugin_name; ?>[link_radio]" value="1" <?php checked( $link_radio, 1 ); ?> />
+                <span><?php esc_attr_e('Show', $this->plugin_name); ?></span>
+            </label>
+            <label for="<?php echo $this->plugin_name; ?>-link_radio_hide">
+                <input type="radio" id="<?php echo $this->plugin_name; ?>-link_radio_hide" name="<?php echo $this->plugin_name; ?>[link_radio]" value="0" <?php checked( $link_radio, 0 ); ?> />
+                <span><?php esc_attr_e('Hide', $this->plugin_name); ?></span>
+            </label>
+    </fieldset>
+    
+    <!-- Category Control -->
+    <fieldset>
+            <h2><?php _e( 'Category ID Management', $this->plugin_name ); ?></h2>
+            <?php echo $category_radio; ?>
+            <label for="<?php echo $this->plugin_name; ?>-category_radio_show">
+                <input type="radio" id="<?php echo $this->plugin_name; ?>-category_radio_show" name="<?php echo $this->plugin_name; ?>[category_radio]" value="1" <?php checked( $category_radio, 1 ); ?> />
+                <span><?php esc_attr_e('Show', $this->plugin_name); ?></span>
+            </label>
+            <label for="<?php echo $this->plugin_name; ?>-category_radio_hide">
+                <input type="radio" id="<?php echo $this->plugin_name; ?>-category_radio_hide" name="<?php echo $this->plugin_name; ?>[category_radio]" value="0" <?php checked( $category_radio, 0 ); ?> />
+                <span><?php esc_attr_e('Hide', $this->plugin_name); ?></span>
+            </label>
+    </fieldset>
+
+    <!-- User Control -->
+    <fieldset>
+            <h2><?php _e( 'User ID Management', $this->plugin_name ); ?></h2>
+            <?php echo $user_radio; ?>
+            <label for="<?php echo $this->plugin_name; ?>-user_radio_show">
+                <input type="radio" id="<?php echo $this->plugin_name; ?>-user_radio_show" name="<?php echo $this->plugin_name; ?>[user_radio]" value="1" <?php checked( $user_radio, 1 ); ?> />
+                <span><?php esc_attr_e('Show', $this->plugin_name); ?></span>
+            </label>
+            <label for="<?php echo $this->plugin_name; ?>-user_radio_hide">
+                <input type="radio" id="<?php echo $this->plugin_name; ?>-user_radio_hide" name="<?php echo $this->plugin_name; ?>[user_radio]" value="0" <?php checked( $user_radio, 0 ); ?> />
+                <span><?php esc_attr_e('Hide', $this->plugin_name); ?></span>
+            </label>
+    </fieldset>
+
+    <!-- Comment Control -->
+    <fieldset>
+                <h2><?php _e( 'Comment ID Management', $this->plugin_name ); ?></h2>
+                <?php echo $comment_radio; ?>
+                <label for="<?php echo $this->plugin_name; ?>-comment_radio_show">
+                    <input type="radio" id="<?php echo $this->plugin_name; ?>-comment_radio_show" name="<?php echo $this->plugin_name; ?>[comment_radio]" value="1" <?php checked( $comment_radio, 1 ); ?> />
+                    <span><?php esc_attr_e('Show', $this->plugin_name); ?></span>
+                </label>
+                <label for="<?php echo $this->plugin_name; ?>-comment_radio_hide">
+                    <input type="radio" id="<?php echo $this->plugin_name; ?>-comment_radio_hide" name="<?php echo $this->plugin_name; ?>[comment_radio]" value="0" <?php checked( $comment_radio, 0 ); ?> />
+                    <span><?php esc_attr_e('Hide', $this->plugin_name); ?></span>
+                </label>
+    </fieldset>
+
+    <!-- CPT Control -->
+    <fieldset>
+                <h2><?php _e( 'CPT ID Management', $this->plugin_name ); ?></h2>
+                <?php echo $cpt_radio; ?>
+                <label for="<?php echo $this->plugin_name; ?>-cpt_radio_show">
+                    <input type="radio" id="<?php echo $this->plugin_name; ?>-cpt_radio_show" name="<?php echo $this->plugin_name; ?>[cpt_radio]" value="1" <?php checked( $cpt_radio, 1 ); ?> />
+                    <span><?php esc_attr_e('Show', $this->plugin_name); ?></span>
+                </label>
+                <label for="<?php echo $this->plugin_name; ?>-cpt_radio_hide">
+                    <input type="radio" id="<?php echo $this->plugin_name; ?>-cpt_radio_hide" name="<?php echo $this->plugin_name; ?>[cpt_radio]" value="0" <?php checked( $cpt_radio, 0 ); ?> />
+                    <span><?php esc_attr_e('Hide', $this->plugin_name); ?></span>
+                </label>
     </fieldset>
 
     <?php submit_button( __( 'Save all changes', $this->plugin_name ), 'primary','submit', TRUE ); ?>

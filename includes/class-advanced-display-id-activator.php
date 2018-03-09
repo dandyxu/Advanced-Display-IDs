@@ -30,7 +30,7 @@ class Advanced_Display_Id_Activator {
 	 * @since    1.0.0
 	 */
 	public static function activate() {
-
+		
 	}
 
 }
