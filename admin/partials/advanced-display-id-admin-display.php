@@ -22,8 +22,18 @@ if ( ! defined( 'WPINC' ) ) die;
     <form method="post" name="cleanup_options" action="options.php">
     <?php
         //Grab all options
-        $options = get_option($this->plugin_name);
-        $general_radio = ( isset( $options['general_radio'] ) && ! empty( $options['general_radio'] ) ) ? $options['general_radio'] : 1;
+        $options = get_option($this->plugin_name, array(
+            'general_radio' => 1,
+            'post_radio'    => 1,
+            'page_radio'    => 1,
+            'media_radio'   => 1,
+            'link_radio'    => 1,
+            'category_radio'=> 1,
+            'user_radio'    => 1,
+            'comment_radio' => 1,
+            'cpt_radio'     => 1
+        ));
+        $general_radio = ( isset( $options['general_radio'] ) && ! empty( $options['general_radio'] ) ) ?: $options['general_radio'];
         $post_radio = ( isset( $options['post_radio'] ) && ! empty( $options['post_radio'] ) ) ?: $options['post_radio'];
         $page_radio = ( isset( $options['page_radio'] ) && ! empty( $options['page_radio'] ) ) ?: $options['page_radio'];
         $media_radio = ( isset( $options['media_radio'] ) && ! empty( $options['media_radio'] ) ) ?: $options['media_radio'];
@@ -113,7 +123,7 @@ if ( ! defined( 'WPINC' ) ) die;
     <!-- Media Control -->
     <fieldset>
             <h2><?php _e( 'Media ID Management', $this->plugin_name ); ?></h2>
-            <?php echo isset(get_option($this->plugin_name)['media_radio']); ?>
+            <?php echo $media_radio; ?>
             <label for="<?php echo $this->plugin_name; ?>-media_radio_show">
                 <input type="radio" id="<?php echo $this->plugin_name; ?>-media_radio_show" name="<?php echo $this->plugin_name; ?>[media_radio]" value="1" <?php checked( $media_radio, 1 ); ?> />
                 <span><?php esc_attr_e('Show', $this->plugin_name); ?></span>

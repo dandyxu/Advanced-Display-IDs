@@ -185,153 +185,160 @@ class Advanced_Display_Id_Admin {
 	// 	remove_action( 'admin_init', array( $this, 'custom_objects' ) );
 	// }
 
-	// if (get_option($plugin_name)['general_radio'] == 1) {
-	// 	// For Post Management
-	// 	add_filter( 'manage_posts_columns', array( $this, 'add_column' ) );
-	// 	add_action( 'manage_posts_custom_column', array( $this, 'add_value' ), 12, 2 );
-	// 	// For Page Management
-	// 	add_filter( 'manage_pages_columns', array( $this, 'add_column' ) );
-	// 	add_action( 'manage_pages_custom_column', array( $this, 'add_value' ), 12, 2 );
-	// 	// For Media Management
-	// 	add_filter( 'manage_media_columns', array( $this, 'add_column' ) );
-	// 	add_action( 'manage_media_custom_column', array( $this, 'add_value' ), 12, 2 );
-	// 	// For Link Management
-	// 	add_filter( 'manage_link-manager_columns', array( $this, 'add_column' ) );
-	// 	add_action( 'manage_link_custom_column', array( $this, 'add_value' ), 12, 2 );
-	// 	// For Category Management
-	// 	add_action( 'manage_edit-link-categories_columns', array( $this, 'add_column' ) );
-	// 	add_filter( 'manage_link_categories_custom_column', array( $this, 'add_return_value' ), 12, 3 );
-	// 	// For User Management
-	// 	add_action( 'manage_users_columns', array( $this, 'add_column' ) );
-	// 	add_filter( 'manage_users_custom_column', array( $this, 'add_return_value' ), 12, 3 );
-	// 	// For Comment Management
-	// 	add_action( 'manage_edit-comments_columns', array( $this, 'add_column' ) );
-	// 	add_action( 'manage_comments_custom_column', array( $this, 'add_value' ), 12, 2 );
-	// 	// For CPT Management
-	// 	add_action( 'admin_init', array( $this, 'custom_objects' ) );
-		
-	// }
-	
-	// if (get_option($plugin_name)['general_radio'] == 0) {
-	// 	// For Post Management
-	// 	remove_filter( 'manage_posts_columns', array( $this, 'add_column' ) );
-	// 	remove_action( 'manage_posts_custom_column', array( $this, 'add_value' ), 12, 2 );
-	// 	// For Page Management
-	// 	remove_filter( 'manage_pages_columns', array( $this, 'add_column' ) );
-	// 	remove_action( 'manage_pages_custom_column', array( $this, 'add_value' ), 12, 2 );
-	// 	// For Media Management
-	// 	remove_filter( 'manage_media_columns', array( $this, 'add_column' ) );
-	// 	remove_action( 'manage_media_custom_column', array( $this, 'add_value' ), 10, 2 );
-	// 	// For Link Management
-	// 	remove_filter( 'manage_link-manager_columns', array( $this, 'add_column' ) );
-	// 	remove_action( 'manage_link_custom_column', array( $this, 'add_value' ), 12, 2 );
-	// 	// For Category Management
-	// 	remove_action( 'manage_edit-link-categories_columns', array( $this, 'add_column' ) );
-	// 	remove_filter( 'manage_link_categories_custom_column', array( $this, 'add_return_value' ), 12, 3 );
-	// 	// For User Management
-	// 	remove_action( 'manage_users_columns', array( $this, 'add_column' ) );
-	// 	remove_filter( 'manage_users_custom_column', array( $this, 'add_return_value' ), 12, 3 );
-	// 	// For Comment Management
-	// 	remove_action( 'manage_edit-comments_columns', array( $this, 'add_column' ) );
-	// 	remove_action( 'manage_comments_custom_column', array( $this, 'add_value' ), 12, 2 );
-	// 	// For CPT Management
-	// 	remove_action( 'admin_init', array( $this, 'custom_objects' ) );
-	// }
-		
-	if ( isset(get_option($plugin_name)['post_radio']) == 1) {
-			// For Post Management
-			add_filter( 'manage_posts_columns', array( $this, 'add_column' ) );
-			add_action( 'manage_posts_custom_column', array( $this, 'add_value' ), 10, 2 );	
-	}
-	
-	if ( isset(get_option($plugin_name)['post_radio']) == 0) {
-			// For Post Management
-			remove_filter( 'manage_posts_columns', array( $this, 'add_column' ) );
-			remove_action( 'manage_posts_custom_column', array( $this, 'add_value' ), 10, 2 );
-	}
-		
-	if ( isset(get_option($plugin_name)['page_radio']) == 1){
-				// For Page Management
-				add_filter( 'manage_pages_columns', array( $this, 'add_column' ) );
-				add_action( 'manage_pages_custom_column', array( $this, 'add_value' ), 10, 3 );
-	}
-	
-	if ( isset(get_option($plugin_name)['page_radio']) == 0) {
-				// For Page Management
-				remove_filter( 'manage_pages_columns', array( $this, 'add_column' ) );
-				remove_action( 'manage_pages_custom_column', array( $this, 'add_value' ), 10, 2 );
-	}
-		
-	if ( isset(get_option($plugin_name)['media_radio']) == 1) {
-				// For Media Management
-				add_filter( 'manage_media_columns', array( $this, 'add_column' ) );
-				add_action( 'manage_media_custom_column', array( $this, 'add_value' ), 10, 2 );
-	}
-	
-	if ( isset(get_option($plugin_name)['media_radio']) == 0) {
-				// For Media Management
-				remove_filter( 'manage_media_columns', array( $this, 'add_column' ) );
-				remove_action( 'manage_media_custom_column', array( $this, 'add_value' ), 10, 2 );
-	}	
-
-	if ( isset(get_option($plugin_name)['link_radio']) == 1) {
+	if (get_option($plugin_name)['general_radio'] == 1) {
+		// For Post Management
+		add_filter( 'manage_posts_columns', array( $this, 'add_column' ) );
+		add_action( 'manage_posts_custom_column', array( $this, 'add_value' ), 12, 2 );
+		// For Page Management
+		add_filter( 'manage_pages_columns', array( $this, 'add_column' ) );
+		add_action( 'manage_pages_custom_column', array( $this, 'add_value' ), 12, 2 );
+		// For Media Management
+		add_filter( 'manage_media_columns', array( $this, 'add_column' ) );
+		add_action( 'manage_media_custom_column', array( $this, 'add_value' ), 12, 2 );
 		// For Link Management
 		add_filter( 'manage_link-manager_columns', array( $this, 'add_column' ) );
-		add_action( 'manage_link_custom_column', array( $this, 'add_value' ), 10, 2 );
-	}
-	
-	if ( isset(get_option($plugin_name)['link_radio']) == 0) {
-		// For Link Management
-		remove_filter( 'manage_link-manager_columns', array( $this, 'add_column' ) );
-		remove_action( 'manage_link_custom_column', array( $this, 'add_value' ), 10, 2 );
-	}
-
-	if ( isset(get_option($plugin_name)['category_radio']) == 1){
+		add_action( 'manage_link_custom_column', array( $this, 'add_value' ), 12, 2 );
 		// For Category Management
 		add_action( 'manage_edit-link-categories_columns', array( $this, 'add_column' ) );
-		add_filter( 'manage_link_categories_custom_column', array( $this, 'add_return_value' ), 10, 3 );
-	}
-	
-	if ( isset(get_option($plugin_name)['category_radio']) == 0) {
-		// For Category Management
-		remove_action( 'manage_edit-link-categories_columns', array( $this, 'add_column' ) );
-		remove_filter( 'manage_link_categories_custom_column', array( $this, 'add_return_value' ), 10, 3 );
-	}
-
-	if ( isset(get_option($plugin_name)['user_radio']) == 1) {
+		add_filter( 'manage_link_categories_custom_column', array( $this, 'add_return_value' ), 12, 3 );
 		// For User Management
 		add_action( 'manage_users_columns', array( $this, 'add_column' ) );
-		add_filter( 'manage_users_custom_column', array( $this, 'add_return_value' ), 10, 3 );
-	}
-	
-	if ( isset(get_option($plugin_name)['user_radio']) == 0) {
-		// For User Management
-		remove_action( 'manage_users_columns', array( $this, 'add_column' ) );
-		remove_filter( 'manage_users_custom_column', array( $this, 'add_return_value' ), 10, 3 );
-	}
-	
-	if ( isset(get_option($plugin_name)['comment_radio']) == 1) {
+		add_filter( 'manage_users_custom_column', array( $this, 'add_return_value' ), 12, 3 );
 		// For Comment Management
 		add_action( 'manage_edit-comments_columns', array( $this, 'add_column' ) );
-		add_action( 'manage_comments_custom_column', array( $this, 'add_value' ), 10, 2 );
-	}
-	
-	if ( isset(get_option($plugin_name)['comment_radio']) == 0) {
-		// For Comment Management
-		remove_action( 'manage_edit-comments_columns', array( $this, 'add_column' ) );
-		remove_action( 'manage_comments_custom_column', array( $this, 'add_value' ), 10, 2 );
-	}
-	
-	if ( isset(get_option($plugin_name)['cpt_radio']) == 1) {
+		add_action( 'manage_comments_custom_column', array( $this, 'add_value' ), 12, 2 );
 		// For CPT Management
 		add_action( 'admin_init', array( $this, 'custom_objects' ) );
-	}
-	
-	if ( isset(get_option($plugin_name)['cpt_radio']) == 0) {
+
+		if (get_option($plugin_name)['post_radio'] == 0) {
+			// For Post Management
+			remove_filter( 'manage_posts_columns', array( $this, 'add_column' ) );
+			remove_action( 'manage_posts_custom_column', array( $this, 'add_value' ), 12, 2 );
+		}elseif (get_option($plugin_name)['page_radio'] == 0) {
+
+		}
+		
+	}elseif (get_option($plugin_name)['general_radio'] == 0) {
+		// For Post Management
+		remove_filter( 'manage_posts_columns', array( $this, 'add_column' ) );
+		remove_action( 'manage_posts_custom_column', array( $this, 'add_value' ), 12, 2 );
+		// For Page Management
+		remove_filter( 'manage_pages_columns', array( $this, 'add_column' ) );
+		remove_action( 'manage_pages_custom_column', array( $this, 'add_value' ), 12, 2 );
+		// For Media Management
+		remove_filter( 'manage_media_columns', array( $this, 'add_column' ) );
+		remove_action( 'manage_media_custom_column', array( $this, 'add_value' ), 10, 2 );
+		// For Link Management
+		remove_filter( 'manage_link-manager_columns', array( $this, 'add_column' ) );
+		remove_action( 'manage_link_custom_column', array( $this, 'add_value' ), 12, 2 );
+		// For Category Management
+		remove_action( 'manage_edit-link-categories_columns', array( $this, 'add_column' ) );
+		remove_filter( 'manage_link_categories_custom_column', array( $this, 'add_return_value' ), 12, 3 );
+		// For User Management
+		remove_action( 'manage_users_columns', array( $this, 'add_column' ) );
+		remove_filter( 'manage_users_custom_column', array( $this, 'add_return_value' ), 12, 3 );
+		// For Comment Management
+		remove_action( 'manage_edit-comments_columns', array( $this, 'add_column' ) );
+		remove_action( 'manage_comments_custom_column', array( $this, 'add_value' ), 12, 2 );
 		// For CPT Management
 		remove_action( 'admin_init', array( $this, 'custom_objects' ) );
 	}
+	
+	
 
+		// if ( isset(get_option($plugin_name)['post_radio']) == 1) {
+		// 		// For Post Management
+		// 		add_filter( 'manage_posts_columns', array( $this, 'add_column' ) );
+		// 		add_action( 'manage_posts_custom_column', array( $this, 'add_value' ), 10, 2 );	
+		// }
+		
+		// if ( isset(get_option($plugin_name)['post_radio']) == 0) {
+		// 	// For Post Management
+		// 	remove_filter( 'manage_posts_columns', array( $this, 'add_column' ) );
+		// 	remove_action( 'manage_posts_custom_column', array( $this, 'add_value' ), 10, 2 );
+		// }
+		
+		// if ( isset(get_option($plugin_name)['page_radio']) == 1){
+		// 			// For Page Management
+		// 			add_filter( 'manage_pages_columns', array( $this, 'add_column' ) );
+		// 			add_action( 'manage_pages_custom_column', array( $this, 'add_value' ), 10, 3 );
+		// }
+		
+		// if ( isset(get_option($plugin_name)['page_radio']) == 0) {
+		// 			// For Page Management
+		// 			remove_filter( 'manage_pages_columns', array( $this, 'add_column' ) );
+		// 			remove_action( 'manage_pages_custom_column', array( $this, 'add_value' ), 10, 2 );
+		// }
+			
+		// if ( isset(get_option($plugin_name)['media_radio']) == 1) {
+		// 			// For Media Management
+		// 			add_filter( 'manage_media_columns', array( $this, 'add_column' ) );
+		// 			add_action( 'manage_media_custom_column', array( $this, 'add_value' ), 10, 2 );
+		// }
+		
+		// if ( isset(get_option($plugin_name)['media_radio']) == 0) {
+		// 			// For Media Management
+		// 			remove_filter( 'manage_media_columns', array( $this, 'add_column' ) );
+		// 			remove_action( 'manage_media_custom_column', array( $this, 'add_value' ), 10, 2 );
+		// }	
+
+		// if ( isset(get_option($plugin_name)['link_radio']) == 1) {
+		// 	// For Link Management
+		// 	add_filter( 'manage_link-manager_columns', array( $this, 'add_column' ) );
+		// 	add_action( 'manage_link_custom_column', array( $this, 'add_value' ), 10, 2 );
+		// }
+		
+		// if ( isset(get_option($plugin_name)['link_radio']) == 0) {
+		// 	// For Link Management
+		// 	remove_filter( 'manage_link-manager_columns', array( $this, 'add_column' ) );
+		// 	remove_action( 'manage_link_custom_column', array( $this, 'add_value' ), 10, 2 );
+		// }
+
+		// if ( isset(get_option($plugin_name)['category_radio']) == 1){
+		// 	// For Category Management
+		// 	add_action( 'manage_edit-link-categories_columns', array( $this, 'add_column' ) );
+		// 	add_filter( 'manage_link_categories_custom_column', array( $this, 'add_return_value' ), 10, 3 );
+		// }
+		
+		// if ( isset(get_option($plugin_name)['category_radio']) == 0) {
+		// 	// For Category Management
+		// 	remove_action( 'manage_edit-link-categories_columns', array( $this, 'add_column' ) );
+		// 	remove_filter( 'manage_link_categories_custom_column', array( $this, 'add_return_value' ), 10, 3 );
+		// }
+
+		// if ( isset(get_option($plugin_name)['user_radio']) == 1) {
+		// 	// For User Management
+		// 	add_action( 'manage_users_columns', array( $this, 'add_column' ) );
+		// 	add_filter( 'manage_users_custom_column', array( $this, 'add_return_value' ), 10, 3 );
+		// }
+		
+		// if ( isset(get_option($plugin_name)['user_radio']) == 0) {
+		// 	// For User Management
+		// 	remove_action( 'manage_users_columns', array( $this, 'add_column' ) );
+		// 	remove_filter( 'manage_users_custom_column', array( $this, 'add_return_value' ), 10, 3 );
+		// }
+		
+		// if ( isset(get_option($plugin_name)['comment_radio']) == 1) {
+		// 	// For Comment Management
+		// 	add_action( 'manage_edit-comments_columns', array( $this, 'add_column' ) );
+		// 	add_action( 'manage_comments_custom_column', array( $this, 'add_value' ), 10, 2 );
+		// }
+		
+		// if ( isset(get_option($plugin_name)['comment_radio']) == 0) {
+		// 	// For Comment Management
+		// 	remove_action( 'manage_edit-comments_columns', array( $this, 'add_column' ) );
+		// 	remove_action( 'manage_comments_custom_column', array( $this, 'add_value' ), 10, 2 );
+		// }
+		
+		// if ( isset(get_option($plugin_name)['cpt_radio']) == 1) {
+		// 	// For CPT Management
+		// 	add_action( 'admin_init', array( $this, 'custom_objects' ) );
+		// }
+		
+		// if ( isset(get_option($plugin_name)['cpt_radio']) == 0) {
+		// 	// For CPT Management
+		// 	remove_action( 'admin_init', array( $this, 'custom_objects' ) );
+		// }
 
 }
 
@@ -433,15 +440,15 @@ class Advanced_Display_Id_Admin {
 	public function validate($input) {
 		$valid = array();
 		// Elvis operator ?:
-		$valid['general_radio'] = ( isset($input['general_radio'] ) && ! empty( $input['general_radio'] ) ) ?: esc_attr($input['general_radio']);
-		$valid['post_radio'] = ( isset($input['post_radio'] ) && ! empty( $input['post_radio'] ) ) ?: esc_attr($input['post_radio']);
-		$valid['page_radio'] = ( isset($input['page_radio'] ) && ! empty( $input['page_radio'] ) ) ?: esc_attr($input['page_radio']);
-		$valid['media_radio'] = ( isset($input['media_radio'] ) && ! empty( $input['media_radio'] ) ) ?: esc_attr($input['media_radio']);
-		$valid['link_radio'] = ( isset($input['link_radio'] ) && ! empty( $input['link_radio'] ) ) ?: esc_attr($input['link_radio']);
-		$valid['category_radio'] = ( isset($input['category_radio'] ) && ! empty( $input['category_radio'] ) ) ?: esc_attr($input['category_radio']);
-		$valid['user_radio'] = ( isset($input['user_radio'] ) && ! empty( $input['user_radio'] ) ) ?: esc_attr($input['user_radio']);
-		$valid['comment_radio'] = ( isset($input['comment_radio'] ) && ! empty( $input['comment_radio'] ) ) ?: esc_attr($input['comment_radio']);
-		$valid['cpt_radio'] = ( isset($input['cpt_radio'] ) && ! empty( $input['cpt_radio'] ) ) ?: esc_attr($input['cpt_radio']);
+		$valid['general_radio'] = ( isset($input['general_radio'] ) && ! empty( $input['general_radio'] ) ) ? $input['general_radio'] : 0 ;
+		$valid['post_radio'] = ( isset($input['post_radio'] ) && ! empty( $input['post_radio'] ) ) ? $input['post_radio'] : 1;
+		$valid['page_radio'] = ( isset($input['page_radio'] ) && ! empty( $input['page_radio'] ) ) ? $input['page_radio'] : 1;
+		$valid['media_radio'] = ( isset($input['media_radio'] ) && ! empty( $input['media_radio'] ) ) ? $input['media_radio'] : 1;
+		$valid['link_radio'] = ( isset($input['link_radio'] ) && ! empty( $input['link_radio'] ) ) ? $input['link_radio'] : 1;
+		$valid['category_radio'] = ( isset($input['category_radio'] ) && ! empty( $input['category_radio'] ) ) ? $input['category_radio'] : 1;
+		$valid['user_radio'] = ( isset($input['user_radio'] ) && ! empty( $input['user_radio'] ) ) ? $input['user_radio'] : 1;
+		$valid['comment_radio'] = ( isset($input['comment_radio'] ) && ! empty( $input['comment_radio'] ) ) ? $input['comment_radio'] : 1;
+		$valid['cpt_radio'] = ( isset($input['cpt_radio'] ) && ! empty( $input['cpt_radio'] ) ) ? $input['cpt_radio'] : 1;
 		return $valid;
 	}
 	public function options_update() {
@@ -484,6 +491,7 @@ class Advanced_Display_Id_Admin {
 		$cols['advanced-display-id'] = 'ID';
 		return $cols;
 	}
+	
 	/**
 	 * Adds id value
 	 *
