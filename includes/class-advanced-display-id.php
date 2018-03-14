@@ -160,6 +160,7 @@ class Advanced_Display_Id {
 		// From here added
 		// Save/Update plugin options
 		$this->loader->add_action('admin_init', $plugin_admin, 'options_update');
+		$this->loader->add_action('init', $plugin_admin, 'general_control');
 
 		// Add menu item
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_plugin_admin_menu' );
