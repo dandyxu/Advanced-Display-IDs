@@ -1,14 +1,14 @@
 === Plugin Name ===
-Contributors: (this should be a list of wordpress.org userid's)
+Contributors: dandyjefferson
 Donate link: https://dandyxu.me
-Tags: comments, spam
+Tags: developer, ID
 Requires at least: 3.0.1
-Tested up to: 3.4
-Stable tag: 4.3
+Tested up to: 5.2.4
+Stable tag: 5.2.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
+Advanced Display ID plugin is designed to help theme/plugin developers to get post/page ID easily via UI.
 
 == Description ==
 
